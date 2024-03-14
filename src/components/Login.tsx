@@ -7,7 +7,6 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
 
@@ -17,7 +16,6 @@ const Login = () => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const name = useRef<HTMLInputElement>(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const toggleSignIn = () => {
@@ -56,7 +54,6 @@ const Login = () => {
               dispatch(
                 addUser({ uid: uid, email: email, displayName: displayName })
               );
-              navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -77,12 +74,10 @@ const Login = () => {
         email.current?.value || "",
         password.current?.value || ""
       )
-        .then((userCredential) => {
+        .then(() => {
           // Signed in
-          const user = userCredential.user;
-          console.log(user);
-
-          navigate("/browse");
+          // const user = userCredential.user;
+          // console.log(user);
           // ...
         })
         .catch((error) => {
@@ -95,61 +90,53 @@ const Login = () => {
 
   return (
     // <div className="bg-login-bg">
-    <div className="bg-login-bg h-[100vh] bg-cover">
+    <div className="bg-login-bg bg-cover h-screen">
       <Header />
-      <div className="flex justify-center mt-[6%]">
+      <div className="flex flex-col items-center py-36">
         <form
-          action=""
-          className="flex flex-col bg-black px-16 py-16 lg:w-[28%] gap-6 opacity-90 rounded-md"
           onSubmit={(e) => e.preventDefault()}
+          className="lg:w-[30%] flex flex-col bg-black bg-opacity-90 text-white py-6 px-12 rounded-md"
         >
-          <h1 className="text-white text-3xl">
+          <h1 className="font-bold py-4 text-3xl">
+            {" "}
             {isSignUp ? "Sign Up" : "Sign In"}
           </h1>
           {isSignUp ? (
             <input
-              type="text"
-              placeholder="Enter Full Name"
-              className="p-3 rounded bg-[#333333] text-teal-700 placeholder-[#8c8c8c]"
               ref={name}
+              className="p-4 my-2 bg-slate-600 rounded-md bg-opacity-70 "
+              type="text"
+              placeholder="Full Name"
             />
           ) : (
             <></>
           )}
+
           <input
-            type="text"
-            placeholder="Enter Email"
-            className="p-3 rounded bg-[#333333] text-teal-700 placeholder-[#8c8c8c]"
             ref={email}
+            className="p-4 my-2 bg-slate-600 rounded-md bg-opacity-70 "
+            type="text"
+            placeholder="Email"
           />
           <input
-            type="password"
-            placeholder="Enter Password"
-            className="p-3 rounded bg-[#333333] placeholder-[#8c8c8c]"
             ref={password}
+            className="p-4 my-2 bg-slate-600 rounded-md bg-opacity-70 "
+            type="password"
+            placeholder="Password"
           />
-          {errorMessage ? (
-            <p className="text-red-500 text-sm">{errorMessage}</p>
-          ) : (
-            <></>
-          )}
+          <p className="text-red-500 py-1 text-lg ">{errorMessage}</p>
           <button
-            className="bg-red-600 text-white p-3 rounded"
-            type="submit"
             onClick={handleFormSubmit}
+            className="p-4 my-2 rounded-md bg-red-600 font-bold text-lg"
           >
             {isSignUp ? "Sign Up" : "Sign In"}
           </button>
-          <p className="text-gray-400 cursor-pointer" onClick={toggleSignIn}>
-            {isSignUp ? (
-              <span>
-                Already Registered? <span className="text-white">Sign In!</span>
-              </span>
-            ) : (
-              <span>
-                New to Netflix? <span className="text-white">Sign Up now!</span>
-              </span>
-            )}
+          <p onClick={toggleSignIn} className="my-8 cursor-pointer">
+            {" "}
+            <span className="text-gray-500">
+              {isSignUp ? "Already Registered ?" : "New to netflix"}
+            </span>{" "}
+            {isSignUp ? "Sign In Here" : "Sign Up Now"}
           </p>
         </form>
       </div>
