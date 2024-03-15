@@ -3,7 +3,7 @@ import { RootState } from "../utils/appStore";
 import useMovieTrailer from "../hooks/useMovieTrailer";
 
 interface VideoBackgroundProps {
-  id: number;
+  id: number | null;
 }
 
 const VideoBackground: React.FC<VideoBackgroundProps> = ({ id }) => {
@@ -14,10 +14,10 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({ id }) => {
   useMovieTrailer(id);
 
   return (
-    <div className="absolute">
+    <div className="">
       <iframe
         className="aspect-video w-screen"
-        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1`}
+        src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&rel=0`}
         title="YouTube video player"
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

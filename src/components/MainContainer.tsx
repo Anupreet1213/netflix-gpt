@@ -12,7 +12,7 @@ const MainContainer = () => {
   console.log(movies[0]);
 
   return (
-    <div className="relative">
+    <div className="">
       <VideoBackground id={id} />
       <VideoTitle original_title={original_title} overview={overview} />
     </div>

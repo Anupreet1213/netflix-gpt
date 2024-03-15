@@ -45,7 +45,7 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black flex justify-between items-center pr-5 fixed w-full z-10">
+    <div className="bg-gradient-to-b from-black flex justify-between items-center pr-5 fixed w-full z-50">
       <img className="w-44" src={LOGO} alt="logo" />
       {user ? (
         <div className="flex gap-3">

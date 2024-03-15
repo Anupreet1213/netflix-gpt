@@ -1,8 +1,8 @@
 import { FaPlay } from "react-icons/fa6";
 
 interface VideoTitleProps {
-  original_title: string;
-  overview: string;
+  original_title: string | null;
+  overview: string | null;
 }
 
 const VideoTitle: React.FC<VideoTitleProps> = ({
