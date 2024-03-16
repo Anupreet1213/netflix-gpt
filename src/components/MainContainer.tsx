@@ -9,7 +9,6 @@ const MainContainer = () => {
   );
   if (!movies) return;
   const { original_title, overview, id } = movies[0];
-  console.log(movies[0]);
 
   return (
     <div className="">

@@ -2,20 +2,28 @@ import { User, onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { addUser, removeUser } from "../utils/userSlice";
-import { LOGO, USER_LOGO } from "../utils/constants";
+import { LANG_CONFIG, LOGO, USER_LOGO } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
+import { RootState } from "../utils/appStore";
 // import userSlice from "../utils/userSlice";
 // import appStore from "../utils/appStore";
 
-interface RootState {
+interface RootStateUser {
   user: User;
 }
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = useSelector((store: RootState) => store.user);
+  const user = useSelector((store: RootStateUser) => store.user);
+  const isGpt = useSelector((store: RootState) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
+
+  const toggleGptSearch = () => {
+    dispatch(toggleGptSearchView());
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -44,12 +52,35 @@ const Header = () => {
       });
   };
 
+  const handleLangChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+
   return (
     <div className="bg-gradient-to-b from-black flex justify-between items-center pr-5 fixed w-full z-50">
       <img className="w-44" src={LOGO} alt="logo" />
       {user ? (
         <div className="flex gap-3">
           <img className="w-12" src={USER_LOGO} alt="user-icon" />
+          {isGpt ? (
+            <select
+              className="bg-gray-900 text-white p-1 rounded-lg"
+              name="Lang"
+              onChange={handleLangChange}
+            >
+              {LANG_CONFIG.map((lang) => {
+                return <option value={lang.langKey}>{lang.langName}</option>;
+              })}
+            </select>
+          ) : (
+            <></>
+          )}
+          <button
+            onClick={toggleGptSearch}
+            className="bg-transparent border-red-500 border p-2 rounded-lg text-white"
+          >
+            {isGpt ? "HomePage" : "GPT Search"}
+          </button>
           <span>{user?.displayName}</span>
           <button className="text-white" onClick={handleSignOut}>
             Sign Out
