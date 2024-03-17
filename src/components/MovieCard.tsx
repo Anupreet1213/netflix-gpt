@@ -5,7 +5,7 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ imgPathCode }) => {
-  //   console.log(imgPathCode);
+  if (!imgPathCode) return null;
 
   return <img src={POSTER_IMG + imgPathCode} alt="Movie Card" />;
 };

@@ -4,7 +4,7 @@ interface MovieListProps {
   movies:
     | { poster_path: null; original_title: null; overview: null; id: null }[]
     | null;
-  title: string;
+  title: string | null;
 }
 
 const MovieList: React.FC<MovieListProps> = ({ movies, title }) => {
