@@ -8,8 +8,6 @@ import { LANG_CONFIG, LOGO, USER_LOGO } from "../utils/constants";
 import { toggleGptSearchView } from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
 import { RootState } from "../utils/appStore";
-// import userSlice from "../utils/userSlice";
-// import appStore from "../utils/appStore";
 
 interface RootStateUser {
   user: User;
@@ -57,11 +55,15 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-gradient-to-b from-black flex justify-between items-center pr-5 fixed w-full z-50">
+    <div className="bg-gradient-to-b from-black flex flex-col md:flex-row absolute justify-between items-center pr-5 sm:fixed w-full z-50">
       <img className="w-44" src={LOGO} alt="logo" />
       {user ? (
-        <div className="flex gap-3">
-          <img className="w-12" src={USER_LOGO} alt="user-icon" />
+        <div className="flex gap-3 items-center">
+          <img
+            className="w-12 hidden md:block"
+            src={USER_LOGO}
+            alt="user-icon"
+          />
           {isGpt ? (
             <select
               className="bg-gray-900 text-white p-1 rounded-lg"
@@ -77,12 +79,18 @@ const Header = () => {
           )}
           <button
             onClick={toggleGptSearch}
-            className="bg-transparent border-red-500 border p-2 rounded-lg text-white"
+            className="bg-red-500 p-2 rounded-lg text-white hover:bg-transparent hover:border-red-500 hover:border  transition-all"
           >
             {isGpt ? "HomePage" : "GPT Search"}
           </button>
-          <span>{user?.displayName}</span>
-          <button className="text-white" onClick={handleSignOut}>
+          {/* <FaSignOutAlt
+            className="text-white text-xl sm:text-2xl cursor-pointer"
+            onClick={handleSignOut}
+          /> */}
+          <button
+            className="bg-transparent p-2 rounded-lg text-white hover:bg-red-500 border-red-500 border transition-all"
+            onClick={handleSignOut}
+          >
             Sign Out
           </button>
         </div>

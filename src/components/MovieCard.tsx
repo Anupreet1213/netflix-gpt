@@ -7,7 +7,13 @@ interface MovieCardProps {
 const MovieCard: React.FC<MovieCardProps> = ({ imgPathCode }) => {
   if (!imgPathCode) return null;
 
-  return <img src={POSTER_IMG + imgPathCode} alt="Movie Card" />;
+  return (
+    <img
+      className="w-[8rem] md:w-[12rem]"
+      src={POSTER_IMG + imgPathCode}
+      alt="Movie Card"
+    />
+  );
 };
 
 export default MovieCard;

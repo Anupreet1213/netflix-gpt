@@ -14,7 +14,7 @@ const MovieList: React.FC<MovieListProps> = ({ movies, title }) => {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-white z-10 text-2xl">{title}</h2>
+      <h2 className="text-white z-10 text-lg sm:text-2xl">{title}</h2>
       <div className="flex overflow-x-scroll gap-4 no-scrollbar z-10">
         {movies ? (
           movies.map((movie) => {

@@ -7,7 +7,7 @@ import { RootState } from "../utils/appStore";
 const useMovieTrailer = (id: number | null) => {
   const dispatch = useDispatch();
   const movieTrailer = useSelector(
-    (store: RootState) => store.movies.nowPlayingMovies
+    (store: RootState) => store.movies.trailerVideo
   );
 
   const getVideo = async () => {
@@ -26,7 +26,7 @@ const useMovieTrailer = (id: number | null) => {
   };
 
   useEffect(() => {
-    !movieTrailer && getVideo();
+    !movieTrailer.key && getVideo();
   }, []);
 };
 

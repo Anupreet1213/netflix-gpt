@@ -7,7 +7,7 @@ const GptSuggestions = () => {
     (store: RootState) => store.gpt
   );
   return (
-    <div className="bg-black p-4">
+    <div className="bg-black p-4 flex flex-col gap-4">
       {moviesRecommendation.map((movie: [], index: number) => {
         return <MovieList movies={movie} title={moviesName[index]} />;
       })}

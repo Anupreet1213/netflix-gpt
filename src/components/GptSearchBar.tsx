@@ -61,7 +61,7 @@ const GptSearchBar = () => {
   };
 
   return (
-    <div className="w-6/12 bg-black opacity-90 py-4 ">
+    <div className="w-[90vw] md:w-4/12 bg-black opacity-90 py-4 px-4 sm:px-2 ">
       <form
         className="flex justify-center gap-4"
         action=""

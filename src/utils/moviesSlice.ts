@@ -1,12 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-// [
-//   {
-//     poster_path: null,
-//     original_title: null,
-//     overview: null,
-//     id: null,
-//   },
-// ]
 
 const moviesSlice = createSlice({
   name: "movies",

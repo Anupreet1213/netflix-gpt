@@ -7,7 +7,7 @@ import { RootState } from "../utils/appStore";
 const useUpcomingMovies = () => {
   const dispatch = useDispatch();
   const upcomingMovies = useSelector(
-    (store: RootState) => store.movies.nowPlayingMovies
+    (store: RootState) => store.movies.upcomingMovies
   );
   const getMovieData = async () => {
     const data = await fetch(

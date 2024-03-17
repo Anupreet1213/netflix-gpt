@@ -7,7 +7,7 @@ const SecondaryContainer = () => {
   //   console.log(movies);
 
   return (
-    <div className="p-6 text-white -mt-48 flex flex-col gap-12">
+    <div className="p-6 text-white -mt-[10rem] sm:-mt-38 flex flex-col gap-12">
       <MovieList title={"Now Playing"} movies={movies.nowPlayingMovies} />
       <MovieList title={"Popular"} movies={movies.popularMovies} />
       <MovieList title={"Top Rated"} movies={movies.topRatedMovies} />

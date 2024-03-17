@@ -14,7 +14,7 @@ const VideoBackground: React.FC<VideoBackgroundProps> = ({ id }) => {
   useMovieTrailer(id);
 
   return (
-    <div className="">
+    <div className="h-screen pt-[45%] sm:pt-0">
       <iframe
         className="aspect-video w-screen"
         src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1&mute=1&rel=0`}
